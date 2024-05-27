@@ -27,8 +27,8 @@
             <li><a href="#reviews">Review</a></li>
         </ul>
         <div class="header-btn">
-            <a href="Sign_Up.php" class="sign-up">Sign Up</a>
-            <a href="SignIn.php" class="sign-in">Sign In</a>
+            <a href="/SignUp" class="sign-up">Sign Up</a>
+            <a href="/SignIn" class="sign-in">Sign In</a>
         </div>
     </header>
     @yield('content')

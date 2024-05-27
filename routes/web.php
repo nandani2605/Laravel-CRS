@@ -15,5 +15,9 @@ Route::get('/CarShortlist', function () {
 });
 
 Route::get('/SignUp', function () {
-    return view('sign_up');
+    return view('sign-up');
+});
+
+Route::get('/SignIn', function () {
+    return view('sign-in');
 });
