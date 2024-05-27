@@ -59,7 +59,6 @@
         </div>
     </section>
     <!-- Services -->
-    <section class="services" id="services"></section>
     <div class="heading">
         <span>Best Services</span>
         <h1>Explore Out Top Deals <br> From Top Rated Dealers</h1>
