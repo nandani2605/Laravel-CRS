@@ -9,6 +9,7 @@
     <!-- Link to CSS -->
     <link rel="stylesheet" href="assets/style.css">
     <!--Box Icons -->
+    <meta name="csrf-token" content="{csrf_token()}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 </head>
 
@@ -32,15 +33,7 @@
         </div>
     </header>
     @yield('content')
-    <!--Newsletter-->
-    <section class="newsletter">
-        <h2>Subscribe To Newsletter</h2>
-        <div class="box">
-            <input type="text" placeholder="Enter your email....">
-            <a href="#" class="btn">Subscribe</a>
-        </div>
-    </section>
-    <!--copyright-->
+
     <div class="copyright">
         <p>&#169 ; carpoolvenom All Right Reserved</p>
         <a href="#"><i class='bx bxl-facebook'></i></a>
