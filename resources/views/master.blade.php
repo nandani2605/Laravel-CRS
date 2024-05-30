@@ -16,12 +16,12 @@
 <body>
     <!-- Header -->
     <header>
-        <a href="index.html" class="logo"><img src="assets/images/jeep.jpg" alt=""></a>
+        <a href="/" class="logo"><img src="assets/images/jeep.jpg" alt=""></a>
 
         <div class="bx bx-menu" id="menu-icon"></div>
 
         <ul class="navbar">
-            <li><a href="#home">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="#ride">Ride</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#about">About</a></li>

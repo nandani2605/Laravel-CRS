@@ -26,3 +26,5 @@ Route::get('/CarShortlist', function () {
 Route::get('/SignUp',[UserDetailController::class, 'viewSignUp'] )->name('viewSignUp');
 Route::post('/registerUser',[UserDetailController::class, 'registerUser'] )->name('registerUser');
 Route::get('/SignIn',[UserDetailController::class, 'viewSignIn'] )->name('viewSignIn');
+
+Route::post('/user-login', [UserDetailController::class, 'userLogin'])->name('userLogin');

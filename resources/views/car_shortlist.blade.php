@@ -1,7 +1,8 @@
 @extends('master')
 @section('title', 'Car Shortlist')
 @section('content')
-<div class="split left">
+
+<!-- <div>
     <div class="centered">
         <img src="img_avatar2.png" alt="Avatar woman">
         <h2>Jane Flex</h2>
@@ -16,12 +17,12 @@
         </h2>
         </p>
     </div>
-</div>
+</div> -->
 
 <!--Car Short List-->
 <div class="float-container">
 
-    <div class="float-child-1">
+    <!-- <div class="float-child-1">
         <br>
         <h3>Filter</h3>
         <form>
@@ -51,7 +52,7 @@
             <br>
             <input type="reset" id="reset" value="ClearAll">
         </form>
-    </div>
+    </div> -->
 
 
     <div class="float-child-2">
@@ -174,41 +175,6 @@
                 <a href="ecosport.html" class="btn">Rent Now</a>
             </div>
         </div>
-        <br>
-        <br>
-
-        <p>
-        <h2>
-            <center>Largest car sharing marketplace
-                Sedans for short distances, SUVs for tough terrains, luxury cars for surprises - we’ve got it all!</center>
-        </h2>
-        </p>
-        <br> <br>
-        <p>
-        <h2>
-            <center>UNMATCHED BENEFITS</center>
-        </h2>
-        </p>
-        <p>
-        <h2>
-            <center>Drive everywhere with freedom</center>
-        </h2>
-        </p>
-        <br>
-        <p><b>
-                <center>Enjoy Unlimited Kilometers</center>
-            </b>
-            <b>
-                <center>Zero Security Deposite</center>
-            </b>
-            <b>
-                <center>100% Free Cancellation before 24 hrs of trip start</center>
-            </b>
-            <b>
-                <center>Reschedule for Free</center>
-            </b>
-        </p>
     </div>
-</div>
 </div>
 @endsection
