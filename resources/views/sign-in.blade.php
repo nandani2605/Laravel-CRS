@@ -58,17 +58,19 @@
 </style>
 
 <div class="orange-box">
-    <form action="#" method="post">
+    <form action="{{route('userLogin')}}" method="post" class="form-horizontal" method="POST"
+        enctype="multipart/form-data">
+        @csrf
         <div class="form-group">
-            <label>User Name</label>
-            <input type="text" placeholder="Please write username" name="username">
+            <label>Email Id</label>
+            <input type="text" placeholder="Enter Email Id" name="email">
         </div>
         <div class="form-group">
             <label>Password</label>
-            <input type="password" placeholder="Password" id="password" name="pass">
+            <input type="password" placeholder="Password" id="password" name="password">
         </div>
         <div class="form-group">
-            <button type="submit">Submit</button>
+            <button type="submit">Sign In</button>
         </div>
 
     </form>
