@@ -22,10 +22,11 @@
 
         <ul class="navbar">
             <li><a href="/">Home</a></li>
-            <li><a href="#ride">Ride</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#reviews">Review</a></li>
+            <li><a href="/Ride">Ride</a></li>
+            <li><a href="/Services">Services</a></li>
+            <li><a href="/About">About</a></li>
+            <li><a href="/Reviews">Review</a></li>
+            <li><a href="#">Contact</a></li>
         </ul>
         <div class="header-btn">
             <a href="/SignUp" class="sign-up">Sign Up</a>
