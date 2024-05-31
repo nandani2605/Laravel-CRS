@@ -15,6 +15,21 @@ Route::get('/CarShortlist', function () {
     return view('car_shortlist');
 });
 
+Route::get('/Services', function () {
+    return view('services');
+});
+
+Route::get('/Ride', function () {
+    return view('ride');
+});
+
+Route::get('/About', function () {
+    return view('about');
+});
+
+Route::get('/Reviews', function () {
+    return view('reviews');
+});
 // Route::get('/SignUp', function () {
 //     return view('sign-up');
 // });
