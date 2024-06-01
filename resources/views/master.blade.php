@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
@@ -32,7 +32,7 @@
             <li><a href="/Services">Services</a></li>
             <li><a href="/About">About</a></li>
             <li><a href="/Reviews">Review</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="/Contact">Contact</a></li>
         </ul>
         <div class="header-btn">
             <a href="/SignUp" class="sign-up">Sign Up</a>

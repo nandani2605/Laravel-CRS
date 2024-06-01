@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'Sign In')
+@section('title', 'Contact')
 @section('content')
 <style>
     body {
@@ -82,23 +82,45 @@
         }
     }
 </style>
-
 <div class="orange-box">
-    <form action="{{route('userLogin')}}" method="post" class="form-horizontal" method="POST" enctype="multipart/form-data">
+    <h3 style="text-align: center;">Contact Form</h3>
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success alert-dismissible">
+        <strong>{{ $message }}</strong>
+    </div>
+    @endif
+
+    @if ($message = Session::get('error'))
+    <div class="alert alert-danger alert-dismissible">
+        <strong>{{ $message }}</strong>
+    </div>
+    @endif
+
+    <form action="{{ route('send.php.mailer.submit') }}" class="form-horizontal" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label>Email Id</label>
-            <input type="text" placeholder="Enter Email Id" name="email">
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter Full name" name="name" id="name">
         </div>
         <div class="form-group">
-            <label>Password</label>
-            <input type="password" placeholder="Password" id="password" name="password">
+            <label>Phone Number</label>
+            <input type="number" placeholder="number" id="number" name="number">
         </div>
         <div class="form-group">
-            <button type="submit">Sign In</button>
+            <label>Email</label>
+            <input type="email" placeholder="email" id="email" name="email">
         </div>
-        <p>Don't have any account?<a href="/SignUp"> Click here </a></p>
+        <div class="form-group">
+            <label>Subject</label>
+            <input type="text" placeholder="Enter Subject" name="subject" id="subject">
+        </div>
+        <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Enter your message" id="body" name="body"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
     </form>
 </div>
-
 @endsection
