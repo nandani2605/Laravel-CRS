@@ -240,9 +240,15 @@ header {
     background: var(--gradient);
     color: #fff;
 }
-
+.services-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
 .services-container {
-    display: grid;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1rem;
     margin-top: 2rem;
@@ -252,6 +258,9 @@ header {
     padding: 10px;
     border-radius: 1rem;
     box-shadow: 1px 4px 41px rgba(0, 0, 0, 0.1);
+    min-width: 300px;
+    flex-shrink: 0;
+    margin-right: 20px;
 }
 
 .services-container .box .box-img {
@@ -304,7 +313,44 @@ header {
 .services-container .box .btn:hover {
     background: var(--main-color);
 }
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+}
 
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}
+/* Responsive styles */
+@media (max-width: 768px) {
+    .box {
+        min-width: 250px;
+        margin-right: 10px;
+    }
+
+    .arrow {
+        padding: 8px;
+    }
+
+    .left-arrow {
+        left: 5px;
+    }
+
+    .right-arrow {
+        right: 5px;
+    }
+}
 .about-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

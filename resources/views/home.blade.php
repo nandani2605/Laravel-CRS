@@ -62,67 +62,71 @@
 <!-- Services -->
 <div class="heading">
     <span>Best Services</span>
-    <h1>Explore Out Top Deals <br> From Top Rated Dealers</h1>
+    <h1>Explore Our Top Deals <br> From Top Rated Dealers</h1>
 </div>
-<div class="services-container">
-    <div class="box">
-        <div class="box-img">
-            <img src="assets/images/car1.jpg" alt="car1">
+<div class="services-wrapper">
+    <button class="arrow left-arrow">&lt;</button>
+    <div class="services-container">
+        <div class="box">
+            <div class="box-img">
+                <img src="assets/images/car1.jpg" alt="car1">
+            </div>
+            <p></p>
+            <h3>Nissan Kicks 2021</h3>
+            <h2>₹251 <span>/hr</span></h2>
+            <a href="#" class="btn">Rent Now</a>
         </div>
-        <p></p>
-        <h3>Nissan Kicks 2021</h3>
-        <h2>₹251 <span>/hr</span></h2>
-        <a href="#" class="btn">Rent Now</a>
-    </div>
 
-    <div class="box">
-        <div class="box-img">
-            <img src="assets/images/car2.jpg" alt="car1">
+        <div class="box">
+            <div class="box-img">
+                <img src="assets/images/car2.jpg" alt="car1">
+            </div>
+            <p></p>
+            <h3>Mahindra XUV500 </h3>
+            <h2> ₹300 <span>/hr</span></h2>
+            <a href="#" class="btn">Rent Now</a>
         </div>
-        <p></p>
-        <h3>Mahindra XUV500 </h3>
-        <h2> ₹300 <span>/hr</span></h2>
-        <a href="#" class="btn">Rent Now</a>
-    </div>
 
-    <div class="box">
-        <div class="box-img">
-            <img src="assets/images/car3.jpg" alt="car1">
+        <div class="box">
+            <div class="box-img">
+                <img src="assets/images/car3.jpg" alt="car1">
+            </div>
+            <p></p>
+            <h3>KIA Sonet 2021</h3>
+            <h2>₹420 <span>/hr</span></h2>
+            <a href="#" class="btn">Rent Now</a>
         </div>
-        <p></p>
-        <h3>KIA Sonet 2021</h3>
-        <h2>₹420 <span>/hr</span></h2>
-        <a href="#" class="btn">Rent Now</a>
-    </div>
-    <div class="box">
-        <div class="box-img">
-            <img src="assets/images/car4.jpg" alt="car1">
+        <div class="box">
+            <div class="box-img">
+                <img src="assets/images/car4.jpg" alt="car1">
+            </div>
+            <p></p>
+            <h3>Maruti Wagon R </h3>
+            <h2>₹200 <span>/hr</span></h2>
+            <a href="#" class="btn">Rent Now</a>
         </div>
-        <p></p>
-        <h3>Maruti Wagon R </h3>
-        <h2>₹200 <span>/hr</span></h2>
-        <a href="#" class="btn">Rent Now</a>
-    </div>
 
-    <div class="box">
-        <div class="box-img">
-            <img src="assets/images/car5.jpg" alt="car1">
+        <div class="box">
+            <div class="box-img">
+                <img src="assets/images/car5.jpg" alt="car1">
+            </div>
+            <p></p>
+            <h3>2018 Honda Civic</h3>
+            <h2>₹58500 | ₹358 <span>/month</span></h2>
+            <a href="#" class="btn">Rent Now</a>
         </div>
-        <p></p>
-        <h3>2018 Honda Civic</h3>
-        <h2>₹58500 | ₹358 <span>/month</span></h2>
-        <a href="#" class="btn">Rent Now</a>
-    </div>
 
-    <div class="box">
-        <div class="box-img">
-            <img src="assets/images/car6.jpg" alt="car1">
+        <div class="box">
+            <div class="box-img">
+                <img src="assets/images/car6.jpg" alt="car1">
+            </div>
+            <p></p>
+            <h3>Hyundai Grand i10 </h3>
+            <h2> ₹190 <span>/hr</span></h2>
+            <a href="#" class="btn">Rent Now</a>
         </div>
-        <p></p>
-        <h3>Hyundai Grand i10 </h3>
-        <h2> ₹190 <span>/hr</span></h2>
-        <a href="#" class="btn">Rent Now</a>
     </div>
+    <button class="arrow right-arrow">&gt;</button>
 </div>
 <!--about section-->
 <section class="about" id="about">
@@ -205,4 +209,45 @@
         </div>
     </div>
 </section>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const servicesContainer = document.querySelector('.services-container');
+        const leftArrow = document.querySelector('.left-arrow');
+        const rightArrow = document.querySelector('.right-arrow');
+
+        let scrollAmount = 0;
+        const boxWidth = document.querySelector('.box').offsetWidth + 20; // Box width + margin
+        const maxScroll = servicesContainer.scrollWidth - servicesContainer.clientWidth;
+
+        function autoScroll() {
+            scrollAmount += boxWidth;
+            if (scrollAmount > maxScroll) {
+                scrollAmount = 0;
+            }
+            servicesContainer.style.transform = `translateX(-${scrollAmount}px)`;
+        }
+
+        let autoScrollInterval = setInterval(autoScroll, 3000);
+
+        leftArrow.addEventListener('click', () => {
+            clearInterval(autoScrollInterval);
+            scrollAmount -= boxWidth;
+            if (scrollAmount < 0) {
+                scrollAmount = maxScroll;
+            }
+            servicesContainer.style.transform = `translateX(-${scrollAmount}px)`;
+            autoScrollInterval = setInterval(autoScroll, 3000);
+        });
+
+        rightArrow.addEventListener('click', () => {
+            clearInterval(autoScrollInterval);
+            scrollAmount += boxWidth;
+            if (scrollAmount > maxScroll) {
+                scrollAmount = 0;
+            }
+            servicesContainer.style.transform = `translateX(-${scrollAmount}px)`;
+            autoScrollInterval = setInterval(autoScroll, 3000);
+        });
+    });
+</script>
 @endsection
