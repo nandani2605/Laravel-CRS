@@ -55,8 +55,32 @@
         color: #fff;
         cursor: pointer;
     }
-</style>
+    /* Media Queries */
+@media (max-width: 768px) {
+    .orange-box {
+        width: 90%;
+        left: 5%;
+        right: 5%;
+        top: 120px;
+        transform: none;
+    }
+}
 
+@media (max-width: 480px) {
+    .orange-box {
+        width: 90%;
+        left: 5%;
+        right: 5%;
+        top: 115px;
+        transform: none;
+        padding: 15px;
+    }
+
+    .form-group button {
+        width: 100%;
+    }
+}
+</style>
 <div class="orange-box">
     <form id="user_form" action="{{route('registerUser')}}" class="form-horizontal" method="POST" enctype="multipart/form-data">
         @csrf
@@ -84,16 +108,9 @@
             <label>Set Password</label>
             <input type="password" placeholder="Password" id="password" name="password">
         </div>
-
-        <!-- <div class="form-group">
-            <label>Confirm Password</label>
-            <input type="password" placeholder="Please write password" name="pass1">
-           </div> Close the .form-group div here -->
-
         <div class="form-group">
             <button type="submit">Submit</button>
         </div>
-
     </form>
 </div>
 

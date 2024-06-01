@@ -511,6 +511,7 @@ header {
     }
     .home {
         grid-template-columns: 1fr;
+        top: 22px;
     }
     .form-container form {
         position: unset;
