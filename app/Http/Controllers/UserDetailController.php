@@ -44,7 +44,7 @@ class UserDetailController extends Controller
                 'address' => 'required',
                 'phone_no' => 'required',
                 'username' => 'required',
-                'password' => 'required|min:8|confirmed',
+                'password' => 'required',
             ]);
 
             $user = $this->user->createUserAccount($validatedData);
