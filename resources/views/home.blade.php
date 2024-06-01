@@ -15,22 +15,22 @@
         </div>
     </div>
     <div class="form-container">
-        <form action="">
+        <form  method="POST">
+
             <div class="input-box">
                 <span>Location</span>
-                <input type="search" name="" id="" placeholder="search places">
+                <input type="search" name="location" id="location" placeholder="Search places">
             </div>
             <div class="input-box">
                 <span>Pick-Up Date</span>
-                <input type="date" name="" id="">
+                <input type="date" name="pickup_date" id="pickup_date">
             </div>
             <div class="input-box">
                 <span>Return Date</span>
-                <input type="date" name="" id="">
+                <input type="date" name="return_date" id="return_date">
             </div>
-            <input type="submit" name="" id="" class="btn">
-    </div>
-    </form>
+            <input type="submit" class="btn" value="Submit">
+        </form>
     </div>
 </section>
 <!--ride section-->

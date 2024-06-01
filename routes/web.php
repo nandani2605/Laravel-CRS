@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserDetailController;
+use App\Http\Controllers\SendMailController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -30,6 +31,9 @@ Route::get('/About', function () {
 Route::get('/Reviews', function () {
     return view('reviews');
 });
+Route::get('/Contact', function () {
+    return view('contact');
+});
 // Route::get('/SignUp', function () {
 //     return view('sign-up');
 // });
@@ -43,3 +47,7 @@ Route::post('/registerUser',[UserDetailController::class, 'registerUser'] )->nam
 Route::get('/SignIn',[UserDetailController::class, 'viewSignIn'] )->name('viewSignIn');
 
 Route::post('/user-login', [UserDetailController::class, 'userLogin'])->name('userLogin');
+
+
+Route::get('/contact', [SendMailController::class, 'index']);
+Route::post('/send.php.mailer.submit', [SendMailController::class, 'store'])->name('send.php.mailer.submit');
