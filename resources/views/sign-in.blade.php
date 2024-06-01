@@ -55,6 +55,31 @@
         color: #fff;
         cursor: pointer;
     }
+    /* Media Queries */
+@media (max-width: 768px) {
+    .orange-box {
+        width: 90%;
+        left: 5%;
+        right: 5%;
+        top: 120px;
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .orange-box {
+        width: 90%;
+        left: 5%;
+        right: 5%;
+        top: 115px;
+        transform: none;
+        padding: 15px;
+    }
+
+    .form-group button {
+        width: 100%;
+    }
+}
 </style>
 
 <div class="orange-box">
