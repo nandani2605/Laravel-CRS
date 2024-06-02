@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use App\Models\Gym;
 use App\Models\RegisterUser;
 use Illuminate\Support\Facades\Session;
 
@@ -14,7 +13,7 @@ trait SessionTrait
         session(['uuid' => $user->uuid]);
     }
 
-    public function getGymSession()
+    public function getUserSession()
     {
         $uuid = Session::get('uuid');
 

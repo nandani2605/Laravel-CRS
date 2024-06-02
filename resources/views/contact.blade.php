@@ -102,7 +102,13 @@
     </div>
     @endif
 
-    <form action="{{ route('contact.submit') }}" class="form-horizontal" method="POST">
+    @if ($message = Session::get('error'))
+    <div class="alert alert-danger alert-dismissible">
+        <strong>{{ $message }}</strong>
+    </div>
+    @endif
+
+    <form action="{{ route('send.mail.post') }}" class="form-horizontal" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label>Full Name</label>

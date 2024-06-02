@@ -72,10 +72,22 @@ class UserDetailController extends Controller
                 return redirect()->back()->with('status', 'error')->with('message', 'Invalid credential');
             }
             $this->storeGymSession($user);
-            return redirect('/')->with('status', 'success')->with('message', 'login successfully');
+            return redirect('/viewUserHome')->with('status', 'success')->with('message', 'login successfully');
         } catch (Exception $e) {
             Log::error('[UserDetailController][userLogin] Error Login Gym ' . 'Request=' . $request . ', Exception=' . $e->getMessage());
             return redirect()->back()->with('status', 'error')->with('message', 'Invalid credentials or account is not active');
         }
+    }
+
+    public function viewUserHome()
+    {
+        $status = null;
+        $message = null;
+
+        $userSession = $this->getUserSession();
+        $uuid = $userSession['uuid'];
+        $userDetail = $this->user->where('uuid', $uuid)->first();
+
+        return view('userhome', compact('status', 'message','userDetail'));
     }
 }
