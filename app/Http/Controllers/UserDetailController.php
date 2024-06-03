@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\RegisterUser;
 use App\Traits\SessionTrait;
 use Exception;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
