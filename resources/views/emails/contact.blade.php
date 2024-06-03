@@ -10,7 +10,8 @@
 <body>
     <h2>Car Rental Website: Thank You For Visiting.</h2>
 
-    <p>Hello, Sir/Maam</p>
+    <p>Hello, sir</p>
+
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque soluta repudiandae dolores quod doloremque rerum molestiae
         fuga quos quas ipsum ut, debitis eum explicabo nobis deleniti ea eveniet nesciunt temporibus.
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore nesciunt maxime modi necessitatibus ullam enim, adipisci, officiis in laudantium fugit sit harum nam unde quaerat
