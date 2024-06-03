@@ -51,5 +51,3 @@ Route::post('/user-login', [UserDetailController::class, 'userLogin'])->name('us
 
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.show');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
-
-Route::get('/contact',[ContactController::class,'']);

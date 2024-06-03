@@ -84,19 +84,25 @@
 </style>
 <div class="orange-box">
     <h3 style="text-align: center;">Contact Form</h3>
-    @if ($message = Session::get('success'))
-    <div class="alert alert-success alert-dismissible">
-        <strong>{{ $message }}</strong>
+    @if (session('success'))
+    <div style="color: green;">{{ session('success') }}</div>
+    @endif
+
+    @if (session('error'))
+    <div style="color: red;">{{ session('error') }}</div>
+    @endif
+
+    @if ($errors->any())
+    <div style="color: red;">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
     @endif
 
-    @if ($message = Session::get('error'))
-    <div class="alert alert-danger alert-dismissible">
-        <strong>{{ $message }}</strong>
-    </div>
-    @endif
-
-    <form action="{{ route('contact.submit') }}" class="form-horizontal" method="POST" >
+    <form action="{{ route('contact.submit') }}" class="form-horizontal" method="POST">
         @csrf
         <div class="form-group">
             <label>Full Name</label>

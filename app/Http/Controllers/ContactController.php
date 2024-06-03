@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-use Illuminate\Support\Facades\Log;
+use App\Jobs\ContactMailJob;
+use App\Mail\ContactMail;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
-    public function showForm(Request $request)
+    public function showForm()
     {
         return view('contact');
     }
@@ -24,49 +24,10 @@ class ContactController extends Controller
             'body' => 'required|string',
         ]);
 
-        $mail = new PHPMailer(true);
-
-        try {
-            // Server settings
-            $mail->SMTPDebug = 0;
-            $mail->isSMTP();
-            $mail->Host = env('MAIL_HOST');
-            $mail->SMTPAuth = true;
-            $mail->Username = env('MAIL_USERNAME');
-            $mail->Password = env('MAIL_PASSWORD');
-            $mail->SMTPSecure = env('MAIL_ENCRYPTION');
-            $mail->Port = env('MAIL_PORT');
-
-            // $mail->setFrom('nandanpatel2606@gmail.com','Car Rental Services');
-            // $mail->addAddress(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-
-            $mail->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-            $mail->addAddress($request->email);
-            // Content
-
-            $mail->isHTML(true);
-            $mail->Subject = "Thank you for visiting this website!!!";
-            $bodyContent = "
-                <p>Dear {$request->name}</p>
-
-                <p><strong>Number:</strong> {$request->number}</p>
-                <p><strong>Email:</strong> {$request->email}</p>
-                <p><strong>subject:</strong></p>
-                <p>{$request->subject}</p>
-                <p><strong>Message:</strong></p>
-                <p>{$request->body}</p>
-            ";
-            $mail->Body = $bodyContent;
-
-            if (!$mail->send()) {
-                Log::error('Mailer Error: ' . $mail->ErrorInfo);
-                return back()->with('error', 'Message not sent.')->withErrors($mail->ErrorInfo);
-            } else {
-                return back()->with('success', 'Message sent successfully.');
-            }
-        } catch (Exception $e) {
-            Log::error('Exception: ' . $e->getMessage());
-            return back()->with('error', 'Message could not be sent. Please check the log for more details.');
-        }
+        $data = $request->only(['name', 'number', 'email', 'subject', 'body']);
+        Mail::to($data['email'])->queue(new ContactMail($data));
+        // Dispatch the job
+        dispatch(new ContactMailJob($data));
+        return back()->with('success', 'Message sent successfully.');
     }
 }
