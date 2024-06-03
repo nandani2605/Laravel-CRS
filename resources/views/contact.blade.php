@@ -96,27 +96,27 @@
     </div>
     @endif
 
-    <form action="{{ route('send.php.mailer.submit') }}" class="form-horizontal" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('contact.submit') }}" class="form-horizontal" method="POST" >
         @csrf
         <div class="form-group">
             <label>Full Name</label>
-            <input type="text" placeholder="Enter Full name" name="name" id="name">
+            <input type="text" placeholder="Enter Full name" name="name" id="name" required>
         </div>
         <div class="form-group">
             <label>Phone Number</label>
-            <input type="number" placeholder="number" id="number" name="number">
+            <input type="number" placeholder="number" id="number" name="number" required>
         </div>
         <div class="form-group">
             <label>Email</label>
-            <input type="email" placeholder="email" id="email" name="email">
+            <input type="email" placeholder="email" id="email" name="email" required>
         </div>
         <div class="form-group">
             <label>Subject</label>
-            <input type="text" placeholder="Enter Subject" name="subject" id="subject">
+            <input type="text" placeholder="Enter Subject" name="subject" id="subject" required>
         </div>
         <div class="form-group">
             <label>Message</label>
-            <textarea placeholder="Enter your message" id="body" name="body"></textarea>
+            <textarea placeholder="Enter your message" type="text" id="body" name="body" required></textarea>
         </div>
         <div class="form-group">
             <button type="submit">Submit</button>

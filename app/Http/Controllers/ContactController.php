@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+use Illuminate\Support\Facades\Log;
 
-class SendMailController extends Controller
+class ContactController extends Controller
 {
-    public function index()
+    public function showForm(Request $request)
     {
         return view('contact');
     }
 
-    public function store(Request $request)
+    public function submitForm(Request $request)
     {
-        // Validate form input
         $request->validate([
             'name' => 'required|string|max:255',
             'number' => 'required|numeric',
@@ -28,7 +30,7 @@ class SendMailController extends Controller
 
         try {
             // Server settings
-            $mail->SMTPDebug = 0; // Change to 2 for detailed debug output
+            $mail->SMTPDebug = 0;
             $mail->isSMTP();
             $mail->Host = env('MAIL_HOST');
             $mail->SMTPAuth = true;
@@ -37,23 +39,32 @@ class SendMailController extends Controller
             $mail->SMTPSecure = env('MAIL_ENCRYPTION');
             $mail->Port = env('MAIL_PORT');
 
-            // Recipients
             $mail->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
             $mail->addAddress($request->email);
 
             // Content
+
             $mail->isHTML(true);
-            $mail->Subject = $request->subject;
-            $mail->Body    = $request->body;
+            $mail->Subject = "Thank you for visiting this website!!!";
+            $bodyContent = "
+                <p><strong>Name:</strong> {$request->name}</p>
+                <p><strong>Number:</strong> {$request->number}</p>
+                <p><strong>subject:</strong></p>
+                <p>{$request->subject}</p>
+                <p><strong>Message:</strong></p>
+                <p>{$request->body}</p>
+            ";
+            $mail->Body = $bodyContent;
 
             if (!$mail->send()) {
-                return back()->with("error", "Email not sent.")->withErrors($mail->ErrorInfo);
+                Log::error('Mailer Error: ' . $mail->ErrorInfo);
+                return back()->with('error', 'Email not sent.')->withErrors($mail->ErrorInfo);
             } else {
-                return back()->with("success", "Email has been sent.");
+                return back()->with('success', 'Email sent successfully.');
             }
-
         } catch (Exception $e) {
-            return back()->with('error', 'Message could not be sent.')->withErrors($e->getMessage());
+            Log::error('Exception: ' . $e->getMessage());
+            return back()->with('error', 'Message could not be sent. Please check the log for more details.');
         }
     }
 }
