@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\SMTP;
 use Illuminate\Support\Facades\Log;
 
 class ContactController extends Controller
@@ -39,16 +37,20 @@ class ContactController extends Controller
             $mail->SMTPSecure = env('MAIL_ENCRYPTION');
             $mail->Port = env('MAIL_PORT');
 
+            // $mail->setFrom('nandanpatel2606@gmail.com','Car Rental Services');
+            // $mail->addAddress(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+
             $mail->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
             $mail->addAddress($request->email);
-
             // Content
 
             $mail->isHTML(true);
             $mail->Subject = "Thank you for visiting this website!!!";
             $bodyContent = "
-                <p><strong>Name:</strong> {$request->name}</p>
+                <p>Dear {$request->name}</p>
+
                 <p><strong>Number:</strong> {$request->number}</p>
+                <p><strong>Email:</strong> {$request->email}</p>
                 <p><strong>subject:</strong></p>
                 <p>{$request->subject}</p>
                 <p><strong>Message:</strong></p>
@@ -58,9 +60,9 @@ class ContactController extends Controller
 
             if (!$mail->send()) {
                 Log::error('Mailer Error: ' . $mail->ErrorInfo);
-                return back()->with('error', 'Email not sent.')->withErrors($mail->ErrorInfo);
+                return back()->with('error', 'Message not sent.')->withErrors($mail->ErrorInfo);
             } else {
-                return back()->with('success', 'Email sent successfully.');
+                return back()->with('success', 'Message sent successfully.');
             }
         } catch (Exception $e) {
             Log::error('Exception: ' . $e->getMessage());
