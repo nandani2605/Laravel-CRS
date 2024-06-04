@@ -110,7 +110,7 @@
         </div>
         <div class="form-group">
             <label>Phone Number</label>
-            <input type="number" placeholder="number" id="number" name="number" required>
+            <input type="text" placeholder="number" id="number" name="number" required>
         </div>
         <div class="form-group">
             <label>Email</label>
