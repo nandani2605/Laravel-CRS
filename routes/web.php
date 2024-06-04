@@ -45,6 +45,7 @@ Route::get('/car1', function () {
     return view('car1');
 });
 
+
 Route::get('/SignUp',[UserDetailController::class, 'viewSignUp'] )->name('viewSignUp');
 Route::post('/registerUser',[UserDetailController::class, 'registerUser'] )->name('registerUser');
 Route::get('/SignIn',[UserDetailController::class, 'viewSignIn'] )->name('viewSignIn');
