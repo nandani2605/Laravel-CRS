@@ -2,6 +2,40 @@
 @section('title', 'Home')
 @section('content')
 <!-- Home -->
+<style>
+    .form-container {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .input-box {
+        margin-bottom: 10px;
+    }
+
+    /* Autocomplete dropdown styling */
+    .ui-autocomplete {
+        max-height: 200px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-left: 0;
+        list-style-type: none;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        position: absolute;
+        z-index: 1000;
+        width: calc(10% - 2px);
+        /* Adjust width to match the input field */
+    }
+
+    .ui-menu-item {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .ui-menu-item:hover {
+        background-color: #f0f0f0;
+    }
+</style>
 <section class="home" id="home">
     <div class="text">
         <h1><span>Looking </span>to <br> rent a car</h1>
@@ -15,7 +49,7 @@
         </div>
     </div>
     <div class="form-container">
-        <form  method="POST">
+        <form method="POST">
 
             <div class="input-box">
                 <span>Location</span>
@@ -248,6 +282,51 @@
             servicesContainer.style.transform = `translateX(-${scrollAmount}px)`;
             autoScrollInterval = setInterval(autoScroll, 3000);
         });
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function() {
+        var availableLocations = [
+            "Ahmedabad",
+            "Surat",
+            "Vadodara",
+            "Rajkot",
+            "Bhavnagar",
+            "Jamnagar",
+            "Junagadh",
+            "Gandhinagar",
+            "Anand",
+            "Nadiad",
+            "Morbi",
+            "Surendranagar",
+            "Bharuch",
+            "Porbandar",
+            "Godhra",
+            "Navsari",
+            "Ankleshwar",
+            "Valsad",
+            "Veraval",
+            "Gandhidham",
+            "Palanpur",
+            "Bhuj",
+            "Vapi",
+            "Morvi",
+            "Anjar",
+            "Dhoraji",
+            "Jetpur",
+            "Keshod",
+            "Mangrol",
+            "Mehsana"
+        ];
+        availableLocations.sort();
+        $("#location").autocomplete({
+            source: availableLocations
+        });
+
+        // You can add selection methods here if needed
     });
 </script>
 @endsection
