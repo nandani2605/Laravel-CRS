@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\UserDetailController;
 use App\Http\Controllers\ContactController;
-use App\Jobs\ContactMailJob;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -42,6 +41,9 @@ Route::get('/Contact', function () {
 // Route::get('/SignIn', function () {
 //     return view('sign-in');
 // });
+Route::get('/car1', function () {
+    return view('car1');
+});
 
 Route::get('/SignUp',[UserDetailController::class, 'viewSignUp'] )->name('viewSignUp');
 Route::post('/registerUser',[UserDetailController::class, 'registerUser'] )->name('registerUser');
