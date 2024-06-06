@@ -71,7 +71,7 @@ class UserDetailController extends Controller
                 session()->flush();
                 return redirect()->back()->with('status', 'error')->with('message', 'Invalid credential');
             }
-            $this->storeGymSession($user);
+            $this->storeUserSession($user);
             return redirect('/viewUserHome')->with('status', 'success')->with('message', 'login successfully');
         } catch (Exception $e) {
             Log::error('[UserDetailController][userLogin] Error Login Gym ' . 'Request=' . $request . ', Exception=' . $e->getMessage());

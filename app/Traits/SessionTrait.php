@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 trait SessionTrait
 {
 
-    public function storeGymSession(RegisterUser $user)
+    public function storeUserSession(RegisterUser $user)
     {
         session(['uuid' => $user->uuid]);
     }
