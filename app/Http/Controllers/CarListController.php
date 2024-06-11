@@ -11,68 +11,77 @@ class CarListController extends Controller
 {
     protected $carList;
 
-    public function __construct(
-        CarList $carList,
-    ) {
+    public function __construct(CarList $carList)
+    {
         $this->carList = $carList;
     }
-    public function create()
+
+    public function viewCarList()
     {
-        return view('admin.carList');
+        $carLists = $this->carList->all();
+        return view('admin.carList', compact('carLists'));
     }
 
-    /**
-     * Store a newly created car in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(Request $request)
+
+    public function addCarList(Request $request)
     {
-        $validatedData = $request->validate([
-            'car-img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'make-model' => 'required|string|max:255',
-            'year' => 'required|integer|min:1886|max:' . date('Y'),
-            'type' => 'required|string|max:255',
-            'engine' => 'required|string|max:255',
-            'transmission' => 'required|string|max:255',
-            'mileage' => 'required|string|max:255',
-            'seating-capacity' => 'required|integer|min:1|max:50',
-            'color' => 'required|string|max:255',
-            'features' => 'nullable|string',
-            'hourly-rate' => 'required|numeric|min:0',
-            'daily-rate' => 'required|numeric|min:0',
-            'weekly-rate' => 'required|numeric|min:0',
-            'monthly-rate' => 'required|numeric|min:0',
-            'security-deposit' => 'required|numeric|min:0',
-            'insurance' => 'required|string|max:255',
-            'fuel-policy' => 'required|string|max:255',
-            'late-return-fee' => 'required|numeric|min:0',
-            'payment-methods' => 'nullable|string',
-            'age-requirement' => 'nullable|string',
-            'booking-confirmation' => 'nullable|string',
-            'cancellation-policy' => 'nullable|string',
-            'damage-policy' => 'nullable|string',
-            'mileage-limit' => 'nullable|string',
-            'how-to-book' => 'nullable|string',
-        ]);
-
-        // Store the car image
-        if ($request->hasFile('car-img')) {
-            $imageName = time() . '.' . $request->file('car-img')->extension();
-            $request->file('car-img')->move(public_path('images'), $imageName);
-            $validatedData['car_img'] = $imageName; // Adjusted field name to match the database column
-        }
-
-        // Create a new car
         try {
-            $carList = new CarList();
-            $carList->createCarList($validatedData);
-            return redirect()->back()->with('success', 'Registered Succesfully.');
-        }catch (Exception $e) {
-                //  dd($e);
-                Log::error('[CarListController][carList.store] Error register gym: ' . $e->getMessage());
-                return redirect()->route('carList.store')->with('status', 'error')->with('message', 'error in register gym.');
+            $validatedData = $request->validate([
+                'car_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'make_model' => 'required|string|max:255',
+                'year' => 'required|integer|min:1886|max:' . date('Y'),
+                'type' => 'required|string|max:255',
+                'engine' => 'required|string|max:255',
+                'transmission' => 'required|string|max:255',
+                'mileage' => 'required|string|max:255',
+                'seating_capacity' => 'required|integer|min:1|max:50',
+                'color' => 'required|string|max:255',
+                'features' => 'nullable|string',
+                'hourly_rate' => 'required|numeric|min:0',
+                'daily_rate' => 'required|numeric|min:0',
+                'weekly_rate' => 'required|numeric|min:0',
+                'monthly_rate' => 'required|numeric|min:0',
+                'security_deposit' => 'required|numeric|min:0',
+                'insurance' => 'required|string|max:255',
+                'fuel_policy' => 'required|string|max:255',
+                'late_return_fee' => 'required|numeric|min:0',
+                'payment_methods' => 'nullable|string',
+                'age_requirement' => 'nullable|string',
+                'booking_confirmation' => 'nullable|string',
+                'cancellation_policy' => 'nullable|string',
+                'damage_policy' => 'nullable|string',
+                'mileage_limit' => 'nullable|string',
+                'how_to_book' => 'nullable|string',
+            ]);
+
+            $imagePath = null;
+            // Store the car image
+            if ($request->hasFile('car_img')) {
+                $carImage = $request->file('car_img');
+                $filename = time() . '_' . $carImage->getClientOriginalName();
+                $imagePath = 'car_images/' . $filename;
+
+                try {
+                    $carImage->move(public_path('car_images/'), $filename);
+                } catch (Exception $e) {
+                    Log::error('[CarListController][addCarList] Error moving uploaded file: ' . $e->getMessage());
+                    return redirect()->route('addCarList')->with('status', 'error')->with('message', 'Error in uploading car image.');
+                }
             }
+
+            // Add the image path to the validated data
+            $validatedData['car_img'] = $imagePath;
+
+            // Create the car list entry
+            $carList = $this->carList->createCarList($validatedData, $imagePath);
+            if ($carList) {
+                return redirect()->route('viewCarList')->with('success', 'Registered Successfully.');
+            } else {
+                return redirect()->route('addCarList')->with('error', 'Not Registered Successfully.');
+            }
+        } catch (Exception $e) {
+            Log::error('[CarListController][addCarList] Error registering car: ' . $e->getMessage());
+            return redirect()->route('addCarList')->with('status', 'error')->with('message', 'Error in registering car.');
+        }
     }
 }

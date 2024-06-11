@@ -103,12 +103,12 @@
 <div class="container">
     <h2>Add Car Details</h2>
 
-    <form action="{{ route('carList.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('viewCarList') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="section">
             <h3>Car Information</h3>
-            <label for="car_img">Car Image:</label>
-            <input type="file" id="car_img" name="car_img" accept="image/*" required>
+            <label for="car-img">Car Image:</label>
+            <input type="file" id="car-img" name="car_img" accept="image/*" required>
 
             <div class="row">
                 <div class="col-half">

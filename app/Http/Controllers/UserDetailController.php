@@ -52,7 +52,7 @@ class UserDetailController extends Controller
             }
             return redirect()->route('viewSignUp')->with('status', 'error')->with('message', 'error in register gym.');
         } catch (Exception $e) {
-            //  dd($e);
+
             Log::error('[UserDetailController][registerUser] Error register gym: ' . $e->getMessage());
             return redirect()->route('viewSignUp')->with('status', 'error')->with('message', 'error in register gym.');
         }

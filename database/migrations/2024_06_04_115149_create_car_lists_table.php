@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('car_lists', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
+            $table->longText('car_img');
             $table->string('make_model');
             $table->year('year');
             $table->string('type');

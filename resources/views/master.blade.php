@@ -29,7 +29,7 @@
         <ul class="navbar" id="navbar">
             <li><a href="/">Home</a></li>
             <li><a href="/Ride">Ride</a></li>
-            <li><a href="/Services">Services</a></li>
+            <li><a href="/viewServices">Services</a></li>
             <li><a href="/About">About</a></li>
             <li><a href="/Reviews">Review</a></li>
             <li><a href="/Contact">Contact</a></li>

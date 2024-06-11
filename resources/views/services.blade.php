@@ -89,88 +89,29 @@
     }
 </style>
 
-<!-- Services -->
-<<div class="heading">
+
+<div class="heading">
     <span>Best Services</span>
     <h1>Explore Our Top Deals From Top Rated Dealers</h1>
 </div>
-
 <div class="car-boxes1">
+    @php $count = 0; @endphp
+    @foreach($cardetails as $carList)
+    @if($count % 4 == 0)
     <div class="row">
-        <div class="box sedan">
+        @endif
+        <div class="box {{ $carList->type }}">
             <div class="box-img">
-                <img src="assets/images/car1.jpg" alt="car1">
+                <img src="{{ $carList->car_img }}" alt="{{ $carList->make_model }}">
             </div>
-            <h3>Nissan Kicks 2021</h3>
-            <h2>₹251 <span>/hr</span></h2>
-            <a href="/car1" class="btn">Rent Now</a>
+            <h3>{{ $carList->make_model }}</h3>
+            <h2>₹{{ $carList->hourly_rate }} <span>/hr</span></h2>
+            <a href="{{ route('viewCar',$carList->uuid) }}" class="btn">Rent Now</a>
         </div>
-
-        <div class="box suv">
-            <div class="box-img">
-                <img src="assets/images/car2.jpg" alt="car2">
-            </div>
-            <h3>Mahindra XUV500</h3>
-            <h2>₹300 <span>/hr</span></h2>
-            <a href="#" class="btn">Rent Now</a>
-        </div>
-
-        <div class="box hatchback">
-            <div class="box-img">
-                <img src="assets/images/car3.jpg" alt="car3">
-            </div>
-            <h3>KIA Sonet 2021</h3>
-            <h2>₹420 <span>/hr</span></h2>
-            <a href="#" class="btn">Rent Now</a>
-        </div>
-
-        <div class="box sedan">
-            <div class="box-img">
-                <img src="assets/images/car1.jpg" alt="car1">
-            </div>
-            <h3>Nissan Kicks 2021</h3>
-            <h2>₹251 <span>/hr</span></h2>
-            <a href="#" class="btn">Rent Now</a>
-        </div>
+        @php $count++; @endphp
+        @if($count % 4 == 0)
     </div>
-    <!-- Add more car boxes as needed -->
-    <div class="row">
-        <div class="box sedan">
-            <div class="box-img">
-                <img src="assets/images/car1.jpg" alt="car1">
-            </div>
-            <h3>Nissan Kicks 2021</h3>
-            <h2>₹251 <span>/hr</span></h2>
-            <a href="#" class="btn">Rent Now</a>
-        </div>
-
-        <div class="box suv">
-            <div class="box-img">
-                <img src="assets/images/car2.jpg" alt="car2">
-            </div>
-            <h3>Mahindra XUV500</h3>
-            <h2>₹300 <span>/hr</h2>
-            <a href="#" class="btn">Rent Now</a>
-        </div>
-
-        <div class="box hatchback">
-            <div class="box-img">
-                <img src="assets/images/car3.jpg" alt="car3">
-            </div>
-            <h3>KIA Sonet 2021</h3>
-            <h2>₹420 <span>/hr</span></h2>
-            <a href="#" class="btn">Rent Now</a>
-        </div>
-
-        <div class="box sedan">
-            <div class="box-img">
-                <img src="assets/images/car1.jpg" alt="car1">
-            </div>
-            <h3>Nissan Kicks 2021</h3>
-            <h2>₹251 <span>/hr</span></h2>
-            <a href="#" class="btn">Rent Now</a>
-        </div>
-    </div>
+    @endif
+    @endforeach
 </div>
-
 @endsection

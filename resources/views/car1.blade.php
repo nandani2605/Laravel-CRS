@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'Car Shortlist')
+@section('title', 'carList Shortlist')
 @section('content')
 
 
@@ -11,7 +11,7 @@
         padding: 0;
     }
 
-    .car-details {
+    .carList-details {
         width: 100%;
         margin: 80px auto;
         background-color: #fff;
@@ -100,7 +100,7 @@
     }
 
     @media (max-width: 768px) {
-        .car-details {
+        .carList-details {
             flex-direction: column;
         }
 
@@ -115,77 +115,71 @@
         }
     }
 </style>
-<div class="car-details">
+@foreach($cardetails as $carList)
+<div class="carList-details">
     <div class="box sedan">
         <div class="box-img">
-            <img src="assets/images/car1.jpg" alt="Nissan Kicks 2021">
+            <img src="{{ $cardetails->car_img }}" alt="{{ $cardetails->make_model }}">
         </div>
         <div class="price-rent">
-            <h3>Nissan Kicks 2021</h3>
-            <h2>₹251 <span>/hr</span></h2>
+            <h3>{{ $cardetails->make_model }}</h3>
+            <h2>₹{{ $cardetails->hourly_rate }} <span>/hr</span></h2>
             <a href="#" class="btn">Rent Now</a>
         </div>
     </div>
     <div class="details">
-        <div class="car-specs">
-            <h2>Car Specifications:</h2>
+        <div class="carList-specs">
+            <h2>carList Specifications:</h2>
             <ul>
-                <li><strong>Make & Model:</strong> Nissan Kicks</li>
-                <li><strong>Year:</strong> 2021</li>
-                <li><strong>Type:</strong> Sedan</li>
-                <li><strong>Engine:</strong> 1.3L Turbo Petrol</li>
-                <li><strong>Transmission:</strong> Automatic</li>
-                <li><strong>Mileage:</strong> 16.8 km/l</li>
-                <li><strong>Seating Capacity:</strong> 5</li>
-                <li><strong>Color:</strong> Multiple options available</li>
+                <li><strong>Make & Model:</strong> {{ $cardetails->make_model }}</li>
+                <li><strong>Year:</strong> {{ $cardetails->year }}</li>
+                <li><strong>Type:</strong> {{ $cardetails->type }}</li>
+                <li><strong>Engine:</strong> {{ $cardetails->engine }}</li>
+                <li><strong>Transmission:</strong> {{ $cardetails->transmission }}</li>
+                <li><strong>Mileage:</strong> {{ $cardetails->mileage }}</li>
+                <li><strong>Seating Capacity:</strong> {{ $cardetails->seating_capacity }}</li>
+                <li><strong>Color:</strong> {{ $cardetails->color }}</li>
             </ul>
             <h2>Features:</h2>
             <ul>
-                <li>Touchscreen Infotainment System</li>
-                <li>Climate Control</li>
-                <li>Rear Parking Camera</li>
-                <li>Cruise Control</li>
-                <li>Keyless Entry</li>
-                <li>Alloy Wheels</li>
+                @foreach(explode(',', $cardetails->features) as $feature)
+                <li>{{ $feature }}</li>
+                @endforeach
             </ul>
             <h2>Payment Details:</h2>
             <ul>
-                <li><strong>Hourly Rate:</strong> ₹251</li>
-                <li><strong>Daily Rate:</strong> ₹6000</li>
-                <li><strong>Weekly Rate:</strong> ₹35,000</li>
-                <li><strong>Monthly Rate:</strong> ₹1,20,000</li>
-                <li><strong>Additional Charges:</strong></li>
-                <ul>
-                    <li>Security Deposit: ₹5,000 (refundable)</li>
-                    <li>Insurance: Included</li>
-                    <li>Fuel Policy: Full to Full (Vehicle must be returned with the same fuel level as at the time of renting)</li>
-                    <li>Late Return Fee: ₹300/hr</li>
-                </ul>
+                <li><strong>Hourly Rate:</strong> ₹{{ $cardetails->hourly_rate }}</li>
+                <li><strong>Daily Rate:</strong> ₹{{ $cardetails->daily_rate }}</li>
+                <li><strong>Weekly Rate:</strong> ₹{{ $cardetails->weekly_rate }}</li>
+                <li><strong>Monthly Rate:</strong> ₹{{ $cardetails->monthly_rate }}</li>
+                <li><strong>Security Deposit:</strong> ₹{{ $cardetails->security_deposit }} (refundable)</li>
+                <li><strong>Insurance:</strong> {{ $cardetails->insurance }}</li>
+                <li><strong>Fuel Policy:</strong> {{ $cardetails->fuel_policy }}</li>
+                <li><strong>Late Return Fee:</strong> ₹{{ $cardetails->late_return_fee }}/hr</li>
             </ul>
             <h2>Payment Methods:</h2>
             <ul>
-                <li>Credit/Debit Card</li>
-                <li>Net Banking</li>
-                <li>UPI</li>
-                <li>Mobile Wallets</li>
+                @foreach(explode(',', $cardetails->payment_methods) as $payment_method)
+                <li>{{ $payment_method }}</li>
+                @endforeach
             </ul>
             <h2>Rental Terms and Conditions:</h2>
             <ul>
-                <li><strong>Age Requirement:</strong> Minimum age 21 years with a valid driving license.</li>
-                <li><strong>Booking Confirmation:</strong> Payment must be made to confirm the booking.</li>
-                <li><strong>Cancellation Policy:</strong> Free cancellation up to 24 hours before the scheduled pick-up time.</li>
-                <li><strong>Damage Policy:</strong> Any damage to the car during the rental period will be charged as per the actual cost of repair.</li>
-                <li><strong>Mileage Limit:</strong> 250 km per day, additional charges of ₹15/km apply for extra kilometers.</li>
+                <li><strong>Age Requirement:</strong> {{ $cardetails->age_requirement }}</li>
+                <li><strong>Booking Confirmation:</strong> {{ $cardetails->booking_confirmation }}</li>
+                <li><strong>Cancellation Policy:</strong> {{ $cardetails->cancellation_policy }}</li>
+                <li><strong>Damage Policy:</strong> {{ $cardetails->damage_policy }}</li>
+                <li><strong>Mileage Limit:</strong> {{ $cardetails->mileage_limit }}</li>
             </ul>
             <h2>How to Book:</h2>
             <ol>
-                <li>Select the Car: Click on the "Rent Now" button.</li>
-                <li>Choose Rental Duration: Select the duration for which you need the car.</li>
-                <li>Make Payment: Complete the payment process using your preferred payment method.</li>
-                <li>Booking Confirmation: Receive a confirmation email with the booking details.</li>
+                @foreach(explode(',', $cardetails->how_to_book) as $step)
+                <li>{{ $step }}</li>
+                @endforeach
             </ol>
         </div>
     </div>
 </div>
+@endforeach
 
 @endsection
